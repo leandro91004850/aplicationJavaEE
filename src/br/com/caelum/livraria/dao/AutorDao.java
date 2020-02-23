@@ -4,13 +4,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import br.com.caelum.livraria.modelo.Autor;
 
-@Stateless// tranformando a class em uma EJB
+@Stateless // tranformando a class em uma EJB
 public class AutorDao {
 
-	private Banco banco = new Banco();
+	@Inject
+	private Banco banco;
 	
 	@PostConstruct // para ser chamado pelo proprio EJB containner
 	void aposCriacao() {
@@ -21,7 +23,7 @@ public class AutorDao {
 		System.out.println("Salvando autor" + autor.getNome());
 		// controlando o tempo de cada inserção de dados no base de dados
 		try {
-		Thread.sleep(20000); //20s
+		Thread.sleep(2000);
 		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
